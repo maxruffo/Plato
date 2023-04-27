@@ -6,6 +6,8 @@ company name, sector, market cap, P/E ratio, dividend yield, etc
 """
 
 import yfinance as yf
+import json
+import os
 
 global ticker
 ticker = ""
@@ -23,12 +25,19 @@ class data_scraper():
         return stock
 
     
+    def save_json(self):
+        # Ordner erstellen, falls er nicht vorhanden ist
+        if not os.path.exists("data"):
+            os.makedirs("data")
 
+# Datei im JSON-Format speichern
+        with open("data/stock_info.json", "w") as file:
+            json.dump(self.stock.info, file)
 
 
 scraper = data_scraper("AAPL")
 stock = scraper.get_ticker_obj()
+scraper.save_json()
 
 
-
-print(stock.info)
+print(type(stock.info))
