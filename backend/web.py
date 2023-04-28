@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
+import json
 
 app = Flask(__name__)
 
-data = {"name": "John", "age": 30, "city": "New York"}
+
 
 @app.route('/')
 def index():
@@ -10,6 +11,11 @@ def index():
 
 @app.route('/data')
 def get_data():
+
+    # Stock info ladem
+    with open('data/stock_info.json') as f:
+        data = json.load(f)
+        
     return jsonify(data)
 
 if __name__ == '__main__':
