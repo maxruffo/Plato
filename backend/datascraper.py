@@ -28,11 +28,11 @@ class DataScraper():
     
     def save_json(self):
         # Ordner erstellen, falls er nicht vorhanden ist
-        if not os.path.exists("data"):
-            os.makedirs("data")
+        if not os.path.exists("data/stock_info"):
+            os.makedirs("data/stock_info")
 
 # Datei im JSON-Format speichern
-        with open(f"data/{str(self.ticker)}_stock_info.json", "w") as file:
+        with open(f"data/stock_info/{str(self.ticker)}_stock_info.json", "w") as file:
             json.dump(self.stock.info, file)
 
 
